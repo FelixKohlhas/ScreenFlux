@@ -8,6 +8,12 @@
 
 </div>
 
+## Requirements for reading iOS Screen Time
+- MacOS device signed into the same iCloud account
+- Screen Time "Share across devices" enabled
+
+More info in my blog post [Exporting and analyzing iOS Screen Time usage](https://felixkohlhas.com/projects/screentime/) 
+
 ## Installing
 
 #### Clone repository and install requirements
@@ -34,4 +40,4 @@ in `screenflux.py`
 
 Run using
 
-    python screenflux.py
+    python3 screenflux.py
