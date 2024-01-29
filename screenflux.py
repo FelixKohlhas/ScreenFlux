@@ -1,12 +1,23 @@
+import os
 import sqlite3
 from datetime import datetime
-from os.path import expanduser
 from influxdb_client import InfluxDBClient
 from influxdb_client.client.write_api import SYNCHRONOUS
 
+knowledge_db = os.path.expanduser("~/Library/Application Support/Knowledge/knowledgeC.db")
+
 def query_database():
+    # Check if knowledgeC.db exists
+    if not os.path.exists(knowledge_db):
+        print("Could not find knowledgeC.db at %s." % (knowledge_db))
+        exit(1)
+
+    # Check if knowledgeC.db is readable
+    if not os.access(knowledge_db, os.R_OK):
+        print("The knowledgeC.db at %s is not readable.\nPlease grant full disk access to the application running the script (e.g. Terminal, iTerm, VSCode etc.)." % (knowledge_db))
+        exit(1)
+
     # Connect to the SQLite database
-    knowledge_db = expanduser("~/Library/Application Support/Knowledge/knowledgeC.db")
     with sqlite3.connect(knowledge_db) as con:
         cur = con.cursor()
         
